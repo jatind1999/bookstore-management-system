@@ -1,0 +1,40 @@
+<!-- views/partials/header.handlebars -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">Online Bookstore</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                <!-- Display "Add Book" link if the user is an admin -->
+                {{#if isAdmin}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/book/add">Add Book</a>
+                    </li>
+                {{/if}}
+                <!-- Display logout button if user is logged in -->
+                <li class="nav-item" id="logout-button" style="display: none;">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+                <!-- Add more navigation links as needed -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/customer/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/customer/login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

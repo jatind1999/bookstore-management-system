@@ -1,0 +1,26 @@
+<!-- views/order/trackOrder.handlebars -->
+
+<h2>Track Your Order</h2>
+
+<form action="/orders/track" method="post">
+    <div class="mb-3">
+        <label for="orderNumber" class="form-label">Order Number</label>
+        <input
+            type="text"
+            id="orderNumber"
+            name="orderNumber"
+            class="form-control"
+            required
+        />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Track Order</button>
+</form>
+
+<!-- Display order status here -->
+{{#if orderStatus}}
+    <div class="mt-3">
+        <h4>Order Status</h4>
+        <p>{{orderStatus}}</p>
+    </div>
+{{/if}}

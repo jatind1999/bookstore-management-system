@@ -1,0 +1,96 @@
+<!-- views/book/add.handlebars -->
+<div class="container mt-4">
+    <h2 class="mb-4">Add Book</h2>
+
+    <!-- Add Book Form -->
+    <form id="addBookForm">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author:</label>
+            <input
+                type="text"
+                class="form-control"
+                id="author"
+                name="author"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="genre" class="form-label">Genre:</label>
+            <input
+                type="text"
+                class="form-control"
+                id="genre"
+                name="genre"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price:</label>
+            <input
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity:</label>
+            <input
+                type="number"
+                class="form-control"
+                id="quantity"
+                name="quantity"
+                required
+            />
+        </div>
+        <button type="button" class="btn btn-primary" id="addBookButton">Add
+            Book</button>
+    </form>
+
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addBookButton = document.getElementById('addBookButton');
+        const addBookForm = document.getElementById('addBookForm');
+
+        addBookButton.addEventListener('click', function () {
+            const formData = new FormData(addBookForm);
+            const token = getAuthToken();
+
+            fetch('/books', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify(Object.fromEntries(formData)),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    window.location.href = '/books';
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+        });
+
+        function getAuthToken() {
+            return document.cookie.split('; ').find(row => row.startsWith('authToken=')).split('=')[1];
+        }
+    });
+</script>
+
+</div>

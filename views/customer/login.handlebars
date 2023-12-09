@@ -1,0 +1,47 @@
+<!-- views/customer/login.handlebars -->
+
+<h2>Customer Login</h2>
+
+<!-- views/customer/login.handlebars -->
+
+{{#if loginError}}
+    <div class="alert alert-danger" role="alert">
+        {{loginError}}
+    </div>
+{{/if}}
+
+{{#if loginSuccess}}
+    <div class="alert alert-success" role="alert">
+        {{loginSuccess}}
+    </div>
+{{/if}}
+
+<!-- Your login form here -->
+
+<form action="/customers/login" method="post">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            required
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            required
+        />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<a href="/customer/register">Don't have an account? Register here</a>
